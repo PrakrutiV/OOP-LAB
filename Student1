@@ -1,0 +1,58 @@
+#include<iostream>
+using namespace std;
+class Student
+{
+ string name;
+ double* marks;
+ int numSubjects;
+ public:
+  Student()
+  {
+   name="";
+   marks=nullptr;
+   numSubjects=0;
+   }
+   Student(string studentName,int subjects)
+   {
+   name=studentName;
+   numSubjects=subjects;
+   marks=new double[numSubjects];
+   }
+   void setMarks()
+   {
+    cout<<"Enter the marks for"<<numSubjects<<"subjects:";
+    for(int i=0;i<numSubjects;i++)
+    {
+    cout<<"Subject"<<i+1<<":";
+    cin>>marks[i];
+    }
+    }
+    double calculateAverage()
+    {
+     double sum=0.0;
+     for(int i=0;i<numSubjects;i++)
+     {
+     sum+=marks[i];
+     }
+     return sum/numSubjects;
+     }
+     ~Student()
+     {
+     delete[]marks;
+     }
+     };
+     int main()
+     {
+     string name;
+     int numSubjects;
+     cout<<"Enter student name:";
+     getline(cin, name);
+     cout<<"Enter the number of subjects: ";
+     cin>>numSubjects;
+     Student student1(name, numSubjects);
+     student1.setMarks();
+     double average=student1.calculateAverage();
+     cout<<"Average marks for"<<name<<": "<<average<<endl;
+     return 0;
+     }
+     
